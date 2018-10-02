@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {%load static%}
+    <link rel='stylesheet' href='{% static "dashboard/css/index.css" %}'>
+    <title>Find your Groop!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        
+    </script>
+    
+
+        
+</head>
+<body class="grey darken-2">
+    <ul class="dropdown-content" id='dropdown_form'>
+        <li><a href="#"></a></li>
+    </ul>
+        <nav>
+                <div class="nav-wrapper light-green lighten-1">
+                    <a href='/' id='GroopUp' class="brand-logo grey darken-4 light-green-text text-lighten-1">GroopUp</a>
+                    <div class="row">
+                    <ul id='nav-mobile' class="right hide-on-med-and-down">
+                       <li>
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                       </li>
+                        {%if not request.session.user%}
+                        <li><form action="/login" method="post" class="col s4"></li>
+                            {%csrf_token%}
+                            <li><input type="text" name="username" id='username' placeholder="Username" class=""></li>
+                            <li id="space_maker" class="light-green-text text-lighten-1">|</li>
+                            <li><input type="password" id='password' placeholder="Password" name="password"></li>
+                            <li><input type="submit" id="login_submit" class="btn grey darken-4 light-green-text text-lighten-1 " value="Log in"></li>
+                        <li></form></li>
+                        <li><a href='/register_user' id='register_user' class="btn waves-effect waves-light dropdown-trigger grey darken-4 light-green-text text-lighten-1" ><i class="material-icons left">person</i> Register</a></li>
+                        {%else%}
+                        <li><span id='user_welcome' class="grey-text text-darken-4">Welcome, {{request.session.user}}!</span></li>
+                        <li><a href="/user/{{request.session.user}}" id='info' class=" btn waves-effect waves-light grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">account_circle</i> Profile</a></li>
+                        
+                        <li><a href='/settings' id='settings' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">build</i>Settings</a></li>
+                        <li><a href='/logout' id='logout' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">close</i>Logout</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+                </div>
+            </nav>
+            <div class="row"></div>
+            <div class="row">
+                {%if not request.session.user%}
+                <div class="col s2"></div>
+                {%else%}
+                <div id="my_games" class="col s2 light-green lighten-1">
+                    <h4 id="your_groops" class="grey-text text-darken-2 center-align">Your Groops</h4>
+                    <div class="collection">
+                        {%for my in my_info.games.all%}
+                        <a href='/game/{{my.id}}' class="collection-item avatar light-green lighten-1 grey-text text-darken-2">
+                            <img src='{{my.game_master.avatar.url}}' class="circle">                            
+                           <span><h5>{{my.name}}</h5></span>
+                            <p>{{my.game_type}}<br>
+                               ({{my.game_system}})<br>
+                               {{my.players.count}} players<br>
+                               {{my.status}}<br>
+                               {{my.time}}<br>
+                               {{my.day}}</p> 
+                        </a>
+                        {%empty%}
+                        <h5 class="collection-item light-green lighten-1 grey-text text-darken-2">Get out there and find a Groop!</h5>
+                        {%endfor%}
+                    </div>
+                </div>
+                {%endif%}
+                
+                <div class=" container col s8 offset s2">
+                        {%if not request.session.user%}
+                    <a href="/register_user" class="light-green darken-2"><div class="card-panel grey darken-4"><h1 class="center-align light-green-text text-lighten-1">Sign up now!</h1></div></a>
+                        {%else%}
+                        <div class="card-panel grey darken-4" id='banner'><h1 class="center-align light-green-text text-lighten-1">Start looking for a Groop!</h1></div>
+                        <div class="row">
+                        <div id='game_finder' class="card grey darken-4 col s3"><h3 id='quick_match' class="center-align light-green-text text-lighten-1">Quick match</h3>
+                            <form action='/game_finder' method='post' id='game_search'>
+                                {%csrf_token%}
+                                <div class="input-field">
+                                    <h6 class="light-green-text text-lighten-1">Looking for:</h6>
+                                    <select name="game_type" class="borwser-default rounded btn grey darken-2 light-green-text text-lighten-1" id='game_type'>
+                                            <option value="" disabled selected>Game type</option>
+                                        <option value="Tabletop_RPG">Tabletop RPG</option>
+                                        <option value="Boardgame">Boardgame</option>
+                                        <option value="Card_game">Card game</option>
+                                        <option value="War_game">War game</option>
+                                        <option value="A_bit_of_variety">A bit of variety</option>
+                                    </select>
+                                </div>
+                                    <div class="input-field">
+                                <select name="game_location" class="browser-default rounded btn grey darken-2 light-green-text text-lighten-1" id='game_location'>
+                                    <option value="" disabled selected>Game Status</option>
+                                    <option value="Online">Online</option>
+                                    <option value="Physical">Physical</option>
+
+                                    </select>
+                                    </div>
+
+                                <div class="col s8">
+                                        <button class="btn light-green lighten-1 grey-text text-darken-4" id='submit' type="submit">Go!
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        </div>
+                            </form>
+                        </div>
+                        <div class="col s1"></div>
+                        <div id='display' class="card-panel grey darken-4 light-green-text text-lighten-1 col s7">
+                            
+                        </div>
+                        </div>
+                        <div class="card-panel grey darken-4" id='lower-panel'>
+                            <h1 class="center-align light-green-text text-lighten-1">Or start your own Groop!</h1>
+                            <div class="container">
+                                    <div class="row">
+                            <form action='create_groop' method='post'>
+                                            <div class="input-field col s12 col l6">
+                                                <i class="material-icons prefix">extension</i>
+                                                <input type="text" id='game_name' name="game_name" data-length='15'>
+                                                <label id='name' for='game_name'>Groop name</label>
+                                            </div>
+                                            <div class="input-field col s12 col l6">
+                                                    <i class="material-icons prefix">dashboard</i>
+                                                    <input type="text" id='game_system' name="game_system" data-length='15'>
+                                                    <label id='system' for='game_system'>Game system</label>
+                                                </div>
+                                    
+                                        <div class="input-field col s7">
+                                <select name="game_type" class="borwser-default rounded btn grey darken-2 light-green-text text-lighten-1" id='game_type'>
+                                        <option value="" disabled selected>Game type</option>
+                                    <option value="Tabletop_RPG">Tabletop RPG</option>
+                                    <option value="Boardgame">Boardgame</option>
+                                    <option value="Card_game">Card game</option>
+                                    <option value="War_game">War game</option>
+                                    <option value="A_bit_of_variety">A bit of variety</option>
+                                </select>
+                                </div>
+                                
+                                <div class="input-field col s7">
+                                        <select name="game_location" class="browser-default rounded btn grey darken-2 light-green-text text-lighten-1" id='game_location'>
+                                            <option value="" disabled selected>Game Status</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Physical">Physical</option>
+        
+                                            </select>
+                                            </div>
+
+                                            <div class="input-field col s7">
+                                                    <select name="game_day" class="borwser-default rounded btn grey darken-2 light-green-text text-lighten-1" id='game_day'>
+                                                            <option value="" disabled selected>What day?</option>
+                                                        <option value="Mon">Monday</option>
+                                                        <option value="Tue">Tuesday</option>
+                                                        <option value="Wed">Wednesday</option>
+                                                        <option value="Thu">Thursday</option>
+                                                        <option value="Fri">Friday</option>
+                                                        <option value="Sat">Saturday</option>
+                                                        <option value="Sun">Sunday</option>
+                                                    </select>
+                                                    </div>
+                                            <div class="col s8">
+                                                    <button class="btn light-green lighten-1 grey-text text-darken-4" id='submit' type="submit">Create!
+                                                        <i class="material-icons right">send</i>
+                                                    </button>
+                                                    </div>
+                            </form>
+                            </div>
+                            </div>
+                        </div>
+                {%endif%}
+                
+            </div>
+            <script>
+                    $('#game_search').submit(function(e){
+                        e.preventDefault()
+                        $.ajax({
+                            url:$(this).attr('action'),
+                            method: 'post',
+                            data:$(this).serialize(),
+                            success: function(serverResponse){
+                                $('#display').html(serverResponse)
+                            }
+                        });
+                    });
+                </script>
+</body>
+</html>

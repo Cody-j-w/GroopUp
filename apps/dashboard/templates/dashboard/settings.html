@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {%load static%}
+    <link rel='stylesheet' href='{% static "dashboard/css/index.css" %}'>
+    <title>Find your Groop!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        
+</head>
+<body class="grey darken-2">
+    
+        <nav>
+                <div class="nav-wrapper light-green lighten-1">
+                    <a href='/' id='GroopUp' class="brand-logo grey darken-4 light-green-text text-lighten-1">GroopUp</a>
+                    <ul id='nav-mobile' class="right hide-on-med-and-down">
+                                                
+                        <li><a href='/user/{{request.session.user}}' id='info' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">account_circle</i>Profile</a></li>
+                        <li><a href='/logout' id='logout' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">close</i>Logout</a></li>
+                        
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="row"></div>
+    <div class="row">
+        <div class="col s2"></div>
+        <div class=" card-panel grey darken-4 col s7">
+            <br>
+                <button id="user_edit" class="btn light-green lighten-1 grey-text text-darken-4 col s3">Edit username</button><br><br>
+                <div class="card-panel grey darken-2" id='user_display'></div>
+                <button id="email_edit" class="btn light-green lighten-1 grey-text text-darken-4 col s3">Change E-mail</button><br><br>
+                <div class="card-panel grey darken-2" id='email_display'></div>
+                <button id="pass_edit" class="btn light-green lighten-1 grey-text text-darken-4 col s3">Change password</button><br><br>
+                <div class="card-panel grey darken-2" id='pass_display'></div>
+                <button id="avatar_edit" class="btn light-green lighten-1 grey-text text-darken-4 col s3">Upload avatar</button><br><br>
+                <div class="card-panel grey darken-2" id='avatar_display'></div>
+                <button id="desc_edit" class="btn light-green lighten-1 grey-text text-darken-4 col s3">Edit description</button><br><br>
+                <div class="card-panel grey darken-2" id='desc_display'></div>
+
+        </div>
+    <div class="container col  s7">
+    </div>
+    </div>
+
+    <script>
+            $('#user_edit').click(function(e){
+                e.preventDefault()
+                $.ajax({
+                    url:'/user_edit',
+                    data:$(this).serialize(),
+                    success: function(serverResponse){
+                        $('#user_display').html(serverResponse)
+                    }
+                });
+            });
+        </script>
+<script>
+        $('#email_edit').click(function(e){
+            e.preventDefault()
+            $.ajax({
+                url:'/email_edit',
+                data:$(this).serialize(),
+                success: function(serverResponse){
+                    $('#email_display').html(serverResponse)
+                }
+            });
+        });
+    </script>
+
+<script>
+        $('#pass_edit').click(function(e){
+            e.preventDefault()
+            $.ajax({
+                url:'/pass_edit',
+                data:$(this).serialize(),
+                success: function(serverResponse){
+                    $('#pass_display').html(serverResponse)
+                }
+            });
+        });
+    </script>
+
+<script>
+        $('#avatar_edit').click(function(e){
+            e.preventDefault()
+            $.ajax({
+                url:'/avatar_edit',
+                data:$(this).serialize(),
+                success: function(serverResponse){
+                    $('#avatar_display').html(serverResponse)
+                }
+            });
+        });
+    </script>
+
+<script>
+        $('#desc_edit').click(function(e){
+            e.preventDefault()
+            $.ajax({
+                url:'/desc_edit',
+                data:$(this).serialize(),
+                success: function(serverResponse){
+                    $('#desc_display').html(serverResponse)
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<form action='/pass_edit' method='post'>
+    {%csrf_token%}
+
+        <div class="row">
+            <input type="hidden" name="form_id" value="pass">
+                <div class="input-field col s12 col l6">
+                    <i class="material-icons prefix">lock</i>
+                    <input type="password" id='current_password' name="current_pass">
+                    <label id='current_pass' for='current_password'>Current password</label>
+                </div>
+            </div>
+        <div class="row">
+                <div class="input-field col s12 col l6">
+                    <i class="material-icons prefix">lock</i>
+                    <input type="password" id='password' name="password">
+                    <label id='pass' for='password'>New password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 col l6">
+                    <i class="material-icons prefix">lock_open</i>
+                    <input type="password" id='confirm_password' name="confirm_pass">
+                    <label id='pass_confirm' for='confirm_password'>Confirm new password</label>
+                </div>
+            
+            <div class="col s4">
+                    <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                    </div>
+</form>

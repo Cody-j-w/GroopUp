@@ -1,0 +1,18 @@
+<form action='/email_edit' method='post'>
+    {%csrf_token%}
+
+    <input type="hidden" name="form_id" value="email">
+        <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
+                    <input type="text" id='email' name="email">
+                    <label id='mail' for='email'>E-mail</label>
+                </div>
+        
+            <div class="col s4">
+                    <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                </div>
+</form>

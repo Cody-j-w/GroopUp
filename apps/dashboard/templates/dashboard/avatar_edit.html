@@ -1,0 +1,22 @@
+<form action='/avatar_change' method='post' enctype="multipart/form-data">
+    {%csrf_token%}
+    <input type="hidden" name="form_id" value="avatar">
+    <input type="hidden" name="user_id" value="{{request.session.user_id}}">
+        <div class="row">
+                <div class="input-field file-field col s6">
+                    <div class="btn light-green lighten-1 grey-text darken-4">
+                        <span>File</span>
+                        <input type="file" name="avatar">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path" type="text">
+                    </div>
+                </div>
+            
+            <div class="col s4">
+                    <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                </div>
+</form>

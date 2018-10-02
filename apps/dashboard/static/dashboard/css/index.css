@@ -1,0 +1,122 @@
+#register_user{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+#login{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+#space_maker{
+    margin:0rem 0.2rem 0rem 0.2rem;
+}
+#login_submit{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+#game_finder{
+    margin-left: 0.7rem;
+}
+#username:focus,  #password:focus{
+    border-bottom: 1px solid #212121;
+    box-shadow: 0 1px 0 0 #000;
+    color: #689f38;
+  }
+input::placeholder{
+    color:#212121;
+}
+#settings{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    margin-left: 2rem;
+}
+#info{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+#logout{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    margin-left: 2rem;
+}
+.collection-item{
+    font-family: 'Nunito', sans-serif;
+    font-weight:700;
+}
+
+#game_name:focus, #skill_level:focus {
+    border-bottom: 1px solid #689f38;
+    box-shadow: 0 1px 0 0 #000;
+    color: #689f38;
+  }
+
+  #submit {
+      margin-bottom: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight:700;
+  }
+
+  #game_type, #game_day, #game_location{
+      font-family: 'Nunito', sans-serif;
+      font-weight:700;
+
+  }
+  #display{
+      font-family: 'Nunito', sans-serif;
+      width: 64.5%;
+      height: 24.7rem;
+  }
+
+#banner{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+#GroopUp{
+    padding: 0rem 1rem 0rem 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight:900;
+}
+
+#quick_match{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+}
+
+#user_welcome{
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    margin-left:1rem;
+}
+
+#your_groops{
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+}
+
+#my_games{
+    margin-top: 0.5rem;
+}
+
+#user_edit, #email_edit, #pass_edit, #avatar_edit, #desc_edit{
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+}
+
+#game_name:focus, #game_system:focus{
+    border-bottom: 1px solid #689f38;
+    box-shadow: 0 1px 0 0 #000;
+    color: #689f38;
+}
+
+#name.active, #system.active{
+    color:#689f38;
+}
+
+.input-field .prefix.active {
+    color: #689f38;
+  }
+
+#lower-panel{
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+}

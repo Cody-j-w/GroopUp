@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {%load static%}
+    <link rel='stylesheet' href='{% static "dashboard/css/index.css" %}'>
+    <title>Find your Groop!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".dropdown-trigger").dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                hover: false,
+                alignment: 'left',
+                constrain_width: false,
+                belowOrigin: flase
+                });
+            $('select').not('.disabled').formSelect();
+            });
+    </script>
+    
+
+        
+</head>
+<body class="grey darken-2">
+    <ul class="dropdown-content" id='dropdown_form'>
+        <li><a href="#">1</a></li>
+    </ul>
+        <nav>
+                <div class="nav-wrapper light-green lighten-1">
+                    <a href='/' id='GroopUp' class="brand-logo grey darken-4 light-green-text text-lighten-1">GroopUp</a>
+                    <ul id='nav-mobile' class="right hide-on-med-and-down">
+                        
+                        {%if not request.session.user%}
+                        <li><a href='#' id='login' class="btn waves-effect waves-light dropdown-trigger col s3 grey darken-4 light-green-text text-lighten-1" data-activates='dropdown_form'><i class="material-icons left">fingerprint</i> Login!</a></li>
+                        {%elif request.session.user == user.username%}
+                        <li><a href='/settings' id='settings' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">widgets</i>Settings</a></li>
+                        <li><a href='/logout' id='logout' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">close</i>Logout</a></li>
+                        {%else%}
+                        <li><a href="/user/{{request.session.username}}" id='info' class=" btn waves-effect waves-light grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">account_circle</i> Account</a></li>
+                        
+                        <li><a href='/settings' id='settings' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">widgets</i>Settings</a></li>
+                        <li><a href='/logout' id='logout' class=" btn btn grey darken-4 light-green-text text-lighten-1"><i class="material-icons left">close</i>Logout</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </nav>
+        <div class="row"></div>
+        <div class="row">
+        <div class="container grey darken-4">
+            <div class="card-panel grey darken-4">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="col s4">
+                            <img src='{{user.avatar.url}}' alt='user_avatar' class="circle responsive-img">
+                        </div>
+                        <h2 class="light-green-text text-lighten-1">User: {{user.username}}</h2>
+                        <h5 class="light-green-text text-lighten-1">about: <span id='user_description'>{{user.description}}</span></h5>
+                    </div>
+                    <div class="col s2"></div>
+                     <div id="my_games" class="col s3 light-green lighten-1">
+                            <h4 id="your_groops" class="grey-text text-darken-2 center-align">{{user.username}}'s Groops</h4>
+                            <div class="collection">
+                                    {%for my in user.games.all%}
+                                    <a href='#' class="collection-item avatar light-green lighten-1 grey-text text-darken-2">
+                                            <img src='{{my.game_master.avatar.url}}' class="circle">                            
+                                       <span><h5>{{my.name}}</h5></span>
+                                        <p>{{my.game_type}}<br>
+                                           ({{my.game_system}})<br>
+                                           {{my.players.count}} players<br>
+                                           {{my.status}}<br>
+                                           {{my.time}}<br>
+                                           {{my.day}}</p> 
+                                    </a>
+                                    {%endfor%}
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>

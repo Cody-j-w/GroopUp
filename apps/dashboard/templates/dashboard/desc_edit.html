@@ -1,0 +1,17 @@
+<form action='/desc_edit' method="post">
+    {%csrf_token%}
+
+    <div class="row">
+            <div class="input-field">
+                <input type="hidden" name="form_id" value="description">
+                <textarea id='description' class="materialize-textarea" name="description"></textarea>
+                <label id='desc' for='description'>Description</label>
+            </div>
+        
+            <div class="col s4">
+                    <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                </div>
+</form>

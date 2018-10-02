@@ -1,0 +1,17 @@
+<form action='/user_edit' method='post'>
+    {%csrf_token%}
+
+<input type="hidden" name="form_id" value="username">
+<div class="row">
+    <div class="input-field col s12 col l6">
+        <i class="material-icons prefix">fingerprint</i>
+        <input type="text" id='username' name="username" data-length='15'>
+        <label id='user' for='username'>Username</label>
+    </div>
+<div class="col s4">
+        <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+            <i class="material-icons right">send</i>
+        </button>
+        </div>
+    </div>
+        </form>

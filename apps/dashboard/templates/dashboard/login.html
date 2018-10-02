@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    {%load static%}
+    <link rel='stylesheet' href='{% static "dashboard/css/login.css" %}'>
+    <title>Document</title>
+    <script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+            selectMonths: true,
+            selectYears: 100,
+            format: 'yyyy/mm/dd',
+
+            
+        });
+      });
+      </script>
+</head>
+<body class="grey darken-2">
+    <nav>
+        <div class="nav-wrapper light-green lighten-1">
+            <a href='/' class="brand-logo grey darken-4 light-green-text text-darken-1">GroopUp</a>
+            <ul id='nav-mobile' class="right hide-on-med-and-down">
+                <li><a href=''></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row"></div>
+    <div class="row">
+        <div class=" card-panel grey darken-4 col s5">
+                <form action="/register" method='post'>
+                    {%csrf_token%}
+                    <div class="row">
+                        <div class="input-field col s12 col l6">
+                            <i class="material-icons prefix">fingerprint</i>
+                            <input type="text" id='username' name="username" data-length='15'>
+                            <label id='user' for='username'>Username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 col l6">
+                            <i class="material-icons prefix">email</i>
+                            <input type="text" id='email' name="email">
+                            <label id='mail' for='email'>E-mail</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 col l6">
+                            <i class="material-icons prefix">lock</i>
+                            <input type="password" id='password' name="password">
+                            <label id='pass' for='password'>Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 col l6">
+                            <i class="material-icons prefix">lock_open</i>
+                            <input type="password" id='confirm_password' name="confirm_pass">
+                            <label id='pass_confirm' for='confirm_password'>Confirm password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 col l6">
+                            <i class="material-icons prefix">apps</i>
+                            <input type="date" id='birthday' name="birthday" placeholder="">
+                            <label id='bday' for='birthday'>birthday</label>
+                        </div>
+                    </div>
+                    <div class="col s4 push-s7">
+                    <button class="btn light-green lighten-1" id='submit' type="submit">Submit!
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                    
+                </form>
+        </div>
+    <div class="container col  s7">
+    </div>
+    </div>
+
+
+</body>
+</html>

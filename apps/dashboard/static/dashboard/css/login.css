@@ -1,0 +1,47 @@
+.input-field label {
+    color: #c5e1a5;
+  }
+
+
+
+  .input-field label.active{
+      color:#689f38;
+  }
+
+  #user.active, #mail.active, #pass.active, #pass_confirm.active, #bday.active {
+    color: #689f38;
+  }
+
+#username:focus, #email:focus, #password:focus, #confirm_password:focus, #birthday:focus {
+    border-bottom: 1px solid #689f38;
+    box-shadow: 0 1px 0 0 #000;
+    color: #689f38;
+  }
+
+  #username, #email, #password, #confirm_password, #birthday{
+      border-bottom: 1px solid #c5e1a5;
+      color: #c5e1a5;
+  }
+
+.input-field .prefix {
+    color: #c5e1a5;
+  }
+
+  .input-field .prefix.active {
+    color: #689f38;
+  }
+
+.modal{
+    background-color:#212121;
+    color:#c5e1a5;
+}
+
+.datepicker{
+    background-color: #212121;
+    color: #c5e1a5;
+}
+
+#submit{
+    margin-bottom: 2rem;
+}
+
